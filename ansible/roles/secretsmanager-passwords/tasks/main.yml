@@ -42,17 +42,17 @@
 
 - name: CC Whoami
   shell: aws sts get-caller-identity
-  register: get_caller_identity
+  register: get_caller_identity_cc
 
 - debug:
-     var: get_caller_identity
+     var: get_caller_identity_cc
 
 - name: CC Environment
   shell: env
-  register: get_my_env
+  register: get_my_env_cc
 
 - debug:
-     var: get_my_env
+     var: get_my_env_cc
 
 # Using the cli instead of native ansible as we need to assume a role
 # to access secrets in other accounts
