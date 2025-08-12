@@ -40,6 +40,20 @@
         msg: "Could not install jq."
       when: (recheck_installed.rc | default(0)) != 0 and get_installed.rc != 0
 
+- name: CC Whoami
+  shell: aws sts get-caller-identity
+  register: get_caller_identity
+
+- debug:
+     var: get_caller_identity
+
+- name: CC Environment
+  shell: env
+  register: get_my_env
+
+- debug:
+     var: get_my_env
+
 # Using the cli instead of native ansible as we need to assume a role
 # to access secrets in other accounts
 - name: Get SecretsManager Secrets
