@@ -15,6 +15,10 @@
       set_fact:
         database_metric_list: "{{ get_database_metric_exists.stdout_lines | select('search', '^.*:' + metric_name + '$') }}"
 
+    # ********************************
+    # Ignore Errors during Debug Only!
+    # TEMPORARY CHANGE DURING DBA-1033
+    # ********************************
     - name: Run Collection for Metric
       shell: |
         . ~/.bash_profile
@@ -22,3 +26,4 @@
       loop: "{{ database_metric_list }}"
       loop_control:
         loop_var: database_metric_name
+      ignore_errors: true
