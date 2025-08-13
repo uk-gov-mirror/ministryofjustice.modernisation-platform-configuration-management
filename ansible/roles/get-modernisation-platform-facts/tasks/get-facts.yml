@@ -2,9 +2,17 @@
 # Ensure EC2 role has arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore,
 # or a policy including ssm:GetParameter
 
+- name: HH Secrets Manager passwords
+  debug:
+      var: secretsmanager_passwords
+
 # The environment_management secret in modernisation platform account is not
 # accessible from an EC2. Store the accounts you need in an SSM parameter
 # called `account_ids` instead via terraform.
 - name: Get account_ids JSON
   set_fact:
     account_ids: "{{ lookup('aws_ssm', 'account_ids', region='eu-west-2') }}"
+
+- name: II Secrets Manager passwords
+  debug:
+      var: secretsmanager_passwords
