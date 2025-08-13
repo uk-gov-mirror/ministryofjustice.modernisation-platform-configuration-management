@@ -54,6 +54,10 @@
 - debug:
      var: get_my_env_cc
 
+- name: CC Secrets Manager passwords
+  debug:
+      var: secretsmanager_passwords
+
 # Using the cli instead of native ansible as we need to assume a role
 # to access secrets in other accounts
 - name: Get SecretsManager Secrets
