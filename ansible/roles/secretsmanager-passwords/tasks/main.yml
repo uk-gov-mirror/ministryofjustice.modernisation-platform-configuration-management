@@ -1,12 +1,25 @@
 ---
+
+- name: EE Secrets Manager passwords
+  debug:
+      var: secretsmanager_passwords
+
 - name: Fail if account ids lookup table not defined
   fail:
     msg: "Account_ids lookup not found, please check get-modernisation-platform-facts role ran successfully"
   when: account_ids is not defined
 
+- name: FF Secrets Manager passwords
+  debug:
+      var: secretsmanager_passwords
+
 - name: Setup facts
   set_fact:
     secretsmanager_passwords_dict: "{{ secretsmanager_passwords_dict|default({}) }}"
+
+- name: GG Secrets Manager passwords
+  debug:
+      var: secretsmanager_passwords
 
 # install jq so scripts can easily access passwords
 - name: JQ Installation Block
